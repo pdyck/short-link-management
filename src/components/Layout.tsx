@@ -1,4 +1,4 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import { Button, Container, Stack, Typography } from "@mui/material";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { PropsWithChildren } from "react";
 
@@ -12,15 +12,13 @@ export const Layout = ({ children }: PropsWithChildren) => {
 
     return (
         <Container maxWidth="sm" sx={{ py: 2 }}>
-            <Stack direction="row" spacing={1}>
-                <Typography variant="h4" component="h1">Short Link Management</Typography>
+            <Stack direction="row" alignItems="space-between" spacing={1}>
+                <Typography variant="h4" component="h1" pb={2} >Short Link Management</Typography>
                 {session ? (
                     <Button variant="text" onClick={handleSignOut}>Sign out</Button>
                 ) : null}
             </Stack>
-            <Box sx={{ pb: 2 }}>
-                {children}
-            </Box>
+            {children}
         </Container>
     )
 };
