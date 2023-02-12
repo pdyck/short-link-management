@@ -1,6 +1,5 @@
 import { useSession, useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { Auth, ThemeMinimal } from "@supabase/auth-ui-react";
-import Head from "next/head";
 
 export default function Home() {
     const session = useSession();
@@ -10,11 +9,6 @@ export default function Home() {
 
     return (
         <>
-            <Head>
-                <title>Short Link Management</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
             {!session ? (
                 <Auth supabaseClient={supabase} appearance={{ theme: ThemeMinimal }} />
             ) : (
