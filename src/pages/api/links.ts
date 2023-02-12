@@ -2,9 +2,10 @@ import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { NextApiRequest, NextApiResponse } from "next";
 import { isValidURL } from "../../util/url";
 import { randomUUID } from "crypto";
+import { Database } from "../../util/database.types";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const supabase = createServerSupabaseClient({ req, res });
+    const supabase = createServerSupabaseClient<Database>({ req, res });
 
     const {
         data: { session },
