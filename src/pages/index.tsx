@@ -43,7 +43,7 @@ export default function Home() {
                     <CreateLink onSubmit={handleSubmit} />
                     <Stack spacing={1}>
                         {links.map((link) => (
-                            <Card>
+                            <Card key={link.id}>
                                 <CardContent>
                                     <Typography variant="h6">{link.description}</Typography>
                                     <Typography>{link.slug}</Typography>
