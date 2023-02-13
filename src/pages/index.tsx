@@ -2,8 +2,11 @@ import { Card, CardContent, Link, Stack, Typography } from "@mui/material";
 import { useSession, useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { Auth, ThemeMinimal } from "@supabase/auth-ui-react";
 import { useEffect, useState } from "react";
+import { Database } from "../util/database.types";
 import { CreateLink } from "../components/CreateLink";
 import { Layout } from "../components/Layout";
+
+type Link = Database["public"]["Tables"]["link"]["Row"];
 
 export default function Home() {
     const session = useSession();
@@ -11,7 +14,7 @@ export default function Home() {
 
     const user = useUser();
 
-    const [links, setLinks] = useState<any[]>([]);
+    const [links, setLinks] = useState<Link[]>([]);
 
     useEffect(() => {
         if (session) {
