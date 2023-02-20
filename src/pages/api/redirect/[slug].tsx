@@ -28,19 +28,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { data, error } = await supabase.from("link").select().limit(1).eq("slug", slug);
 
     if (error) {
-        res.status(500).end();
+        res.redirect(`http://${req.headers.host}/404`);
         return;
     }
 
     if (data === null) {
-        res.status(404).end();
+        res.redirect(`http://${req.headers.host}/404`);
         return;
     }
 
     const [link] = data;
 
     if (link === undefined) {
-        res.status(404).end();
+        res.redirect(`http://${req.headers.host}/404`);
         return;
     }
 
