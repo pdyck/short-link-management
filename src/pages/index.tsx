@@ -49,7 +49,8 @@ export default function Home() {
                             <Card key={link.id}>
                                 <CardContent>
                                     <Typography variant="h6">{link.description}</Typography>
-                                    <Typography>{link.slug}</Typography>
+                                    <Link href={`/s/${link.slug}`}>{link.slug}</Link>
+                                    <br />
                                     <Link>{link.target}</Link>
                                 </CardContent>
                             </Card>
