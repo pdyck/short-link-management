@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextApiRequest, NextApiResponse } from "next";
+import { parse as parseUserAgent } from "useragent";
 import { Database } from "../../../util/database.types";
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -42,6 +43,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(404).end();
         return;
     }
+
+    setImmediate(async () => {
+        const { family, os } = parseUserAgent(req.headers["user-agent"]);
+        const referrer = req.headers["referer"];
+        const ip = req.socket.remoteAddress;
+
+        await supabase.from("visit").insert({
+            link_id: link.id,
+            browser: family,
+            os: os.family,
+            referrer,
+            ip,
+        });
+    });
 
     res.redirect(link.target);
 }

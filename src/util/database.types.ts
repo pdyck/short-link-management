@@ -60,6 +60,35 @@ export interface Database {
           user_id?: string
         }
       }
+      visit: {
+        Row: {
+          browser: string | null
+          created_at: string | null
+          id: number
+          ip: string | null
+          link_id: number
+          os: string | null
+          referrer: string | null
+        }
+        Insert: {
+          browser?: string | null
+          created_at?: string | null
+          id?: number
+          ip?: string | null
+          link_id: number
+          os?: string | null
+          referrer?: string | null
+        }
+        Update: {
+          browser?: string | null
+          created_at?: string | null
+          id?: number
+          ip?: string | null
+          link_id?: number
+          os?: string | null
+          referrer?: string | null
+        }
+      }
     }
     Views: {
       [_ in never]: never
