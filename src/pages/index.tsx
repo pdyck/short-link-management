@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { Database } from "../util/database.types";
 import { CreateLink } from "../components/CreateLink";
 import { Layout } from "../components/Layout";
+import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 type Link = Database["public"]["Tables"]["link"]["Row"];
 
@@ -61,3 +63,23 @@ export default function Home() {
         </Layout>
     );
 }
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+    const supabase = await createServerSupabaseClient(ctx);
+
+    const {
+        data: { session },
+    } = await supabase.auth.getSession();
+
+    if (!session) {
+        return {
+            props: {},
+            redirect: {
+                destination: "/login",
+                permanent: false,
+            },
+        };
+    }
+
+    return { props: {} };
+};
