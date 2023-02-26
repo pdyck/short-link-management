@@ -15,7 +15,7 @@ export default function Login() {
         if (session) {
             router.push("/");
         }
-    }, [session]);
+    }, [session, router]);
 
     return (
         <Layout>
