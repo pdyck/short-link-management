@@ -1,6 +1,6 @@
 import { Box, Button, Stack, TextField } from "@mui/material";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { isValidURL } from "src/util/url";
+import { isValidURL } from "../util/url";
 
 type CreateLinkProps = {
     onSubmit: (link: string) => void;
@@ -35,7 +35,7 @@ export const CreateLink = ({
     };
 
     return (
-        <Box component="form" onSubmit={handleSubmit}>
+        <Box component="form" role="form" onSubmit={handleSubmit}>
             <Stack direction="row" spacing={1}>
                 <TextField
                     fullWidth
