@@ -1,0 +1,25 @@
+name: Continuous Integration
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+      - name: Build and Test
+        run: |
+          yarn build
+          yarn test
+      - name: Run Linting
+        run: |
+          yarn lint
