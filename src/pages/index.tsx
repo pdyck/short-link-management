@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useUser } from "@supabase/auth-helpers-react";
 import { CreateLink } from "../components/CreateLink";
 import { Layout } from "../components/Layout";
