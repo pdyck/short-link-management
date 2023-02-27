@@ -6,6 +6,7 @@ import { GetServerSidePropsContext } from "next";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { useLinks } from "../hooks/useLinks";
 import { LinkCard } from "../components/LinkCard";
+import { Greeting } from "../components/Greeting";
 
 export default function Home() {
     const user = useUser();
@@ -14,7 +15,7 @@ export default function Home() {
     return (
         <Layout>
             <Stack spacing={2}>
-                <Typography variant="h5" textAlign="center" component="h2">Hello, {user?.email}</Typography>
+                <Greeting userName={user?.email ?? "User"} />
                 <CreateLink onSubmit={createLink} />
                 <Stack spacing={1}>
                     {links.map((link) => (
