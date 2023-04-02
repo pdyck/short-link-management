@@ -1,4 +1,4 @@
-import { Card, CardContent, Link as MuiLink, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, Link as MuiLink, Typography } from "@mui/material";
 import { Link } from "../util/table.types";
 
 type LinkCardProps = {
@@ -6,14 +6,19 @@ type LinkCardProps = {
 };
 
 export const LinkCard = ({ link }: LinkCardProps) => {
+    const handleClick = () => {
+        window.open(link.target, "_blank")?.focus();
+    };
+
     return (
-        <Card key={link.id}>
+        <Card>
             <CardContent>
                 <Typography variant="h6">{link.description}</Typography>
-                <MuiLink href={`/s/${link.slug}`}>{link.slug}</MuiLink>
-                <br />
-                <MuiLink>{link.target}</MuiLink>
+                <Typography variant="subtitle2" color={(theme) => theme.palette.text.disabled}>{link.target}</Typography>
             </CardContent>
+            <CardActions>
+                <Button size="small" onClick={handleClick}>Visit</Button>
+            </CardActions>
         </Card>
     );
 };
