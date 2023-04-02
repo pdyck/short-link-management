@@ -8,6 +8,7 @@ export default defineConfig({
   testDir: "./tests",
   testMatch: /.*\.e2e\.tsx?/,
   timeout: 30 * 1000,
+  reporter: "html",
 
   webServer: {
     port,

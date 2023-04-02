@@ -1,13 +1,20 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 
-test("has title", async ({ page }) => {
-    await page.goto("/");
+test("everything", async ({ page }) => {
+    const time = Date.now();
+    const email = `user${time}@test.test`;
 
-    await expect(page).toHaveTitle(/Short Link Management/);
-});
+    await page.goto("/login");
+    await page.click("text=Sign up");
+    await page.getByPlaceholder("email").fill(email);
+    await page.getByPlaceholder("password").fill("testpassword");
+    await page.locator("button", { hasText: "Sign up" }).click();
 
-test.skip("has greeting", async ({ page }) => {
-    await page.goto("/");
+    await page.waitForURL("/");
+    await page.locator("heading", { hasText: `Hello, ${email}` });
 
-    await expect(page.getByRole("heading", { name: /Hello, .*/ })).toBeInViewport();
+    const link = "https://playwright.dev";
+    await page.getByPlaceholder("Enter a link").fill(link);
+    await page.locator("button", { hasText: "+" }).click();
+    await page.locator("heading", { hasText: "playwright.dev link" });
 });
