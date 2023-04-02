@@ -1,29 +1,29 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
+
+const port = 3000;
+const baseURL = `http://localhost:${port}`;
 
 export default defineConfig({
-  testDir: './tests',
+  retries: 2,
+  testDir: "./tests",
   testMatch: /.*\.e2e\.tsx?/,
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  timeout: 30 * 1000,
+
+  webServer: {
+    port,
+    command: "yarn dev",
+    reuseExistingServer: !process.env.CI,
+  },
+
   use: {
-    baseURL: 'http://127.0.0.1:3000',
-    trace: 'on-first-retry',
+    baseURL,
+    trace: "retry-with-trace",
   },
 
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
     },
-
   ],
-
-  // webServer: {
-  //   command: 'yarn start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
 });
