@@ -43,7 +43,7 @@ export const CreateLink = ({
                     value={link}
                     onChange={handleChange}
                     error={hasError}
-                    placeholder="Paste a link"
+                    placeholder="Paste a new link"
                     helperText={hasError && "Please enter a valid link."}
                 />
                 <Button type="submit" variant="contained">+</Button>
