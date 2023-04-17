@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const { withSentryConfig } = require("@sentry/nextjs");
+
 const nextConfig = {
   reactStrictMode: true,
   redirects: async () => {
@@ -9,7 +11,10 @@ const nextConfig = {
         permanent: true,
       },
     ];
-  }
+  },
+  sentry: {
+    hideSourceMaps: true,
+  },
 }
 
-module.exports = nextConfig
+module.exports = withSentryConfig(nextConfig);
