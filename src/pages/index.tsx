@@ -14,7 +14,7 @@ export default function Home() {
     return (
         <Layout>
             <Stack spacing={2}>
-                <Typography variant="h5" textAlign="center" component="h2">Hello, {user?.email}!</Typography>
+                <Typography variant="h5" textAlign="center" component="h2">Hello, {user?.email}</Typography>
                 <CreateLink onSubmit={createLink} />
                 <Button onClick={() => {
                     throw new Error("test")}
